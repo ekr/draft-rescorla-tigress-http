@@ -94,6 +94,42 @@ how to build such a channel using a standard HTTP {{!RFC9110}} server.
 
 # Overview of Operation
 
+{{fig-overview}} provides a broad overview of the message flow:
+
+~~~ aasvg
+Alice                     HTTP Server                    Bob
+
+Initiating (R) -------------------------------------------->
+PUT <L0> MSG0 ---------------->
+                              <-------------------- GET <L0>
+                              <----------------- DELETE <L0>
+                              <--------------- PUT <L1> MSG1
+GET <L1> --------------------->
+<------------------------- MSG1
+DELETE <MSG1> ---------------->
+                             ...
+~~~
+{: #fig-overview title="Overview of Operation"}
+
+In order to initiate the transfer, Alice generates a random secret
+value R. She then does the following:
+
+1. Sends R and the address of the HTTP server to Bob over the
+   preexisting channel.
+
+1. Generates the first protocol message MSG0 and stores it in
+   a location on the HTTP server (L0) pseudorandomly generated from
+   R.
+
+When Bob receives the initiating message, he uses R to determine L0,
+retrieves it from the server, and then deletes it. In order to send a
+message (MSG1) to Alice, Bob stores it at a new pseudorandom location
+L1 (again, based on R). Alice retrieves it and then deletes it. Any
+further message exchanges proceed in the same fashion.
+
+
+
+
 # Security Considerations
 
 TODO Security
