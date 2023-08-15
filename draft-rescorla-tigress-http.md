@@ -25,8 +25,8 @@ venue:
 
 author:
  -
-    fullname: Your Name Here
-    organization: Your Organization Here
+    fullname: Eric Rescorla
+    organization: Windy Hill Systems, LLC
     email: "ekr@rtfm.com"
 
 normative:
@@ -36,20 +36,63 @@ informative:
 
 --- abstract
 
-TODO Abstract
-
+There are many systems in which people use "digital credentials" to
+control real-world systems, such as digital car keys, digital hotel
+room keys, etc. In these settings, it is common for one person to want
+to transfer their credentials to another, e.g., to share your hotel
+key. It is desirable to be able to initiate this transfer with a
+single message (e.g., SMS) which kicks off the transfer on the
+receiver side. However, in many cases the credential transfer itself
+cannot be completed over these channels, e.g., because it is too large
+or because it requires multiple round trips. However, the endpoints
+cannot speak directly to each other and may not even be online at the
+same time. This draft defines a mechanism for providing an appropriate
+asynchronous channel using HTTP as a dropbox.
 
 --- middle
 
 # Introduction
 
-TODO Introduction
+There are many systems in which people use "digital credentials" to
+control real-world systems, such as digital car keys, digital hotel
+room keys, etc. Generally these are proprietary system-specific
+credentials are embedded in and used by a (potentially proprietary)
+mobile app.  In these settings, it is common for one person to want to
+transfer their credentials to another, e.g., to share your hotel key
+with a family member.
+
+Although the credentials and transfer mechanisms are often proprietary
+they share a common workflow in which:
+
+1. The Sender initiates the transfer from their app and sends
+   an invitation message over a preexisting channel such as
+   SMS or e-mail.
+
+1. Bob receives the invitation message from Alice and hands
+   it to his app (ideally this would happen automatically,
+   e.g., by some URL handler).
+
+1. Bob uses the invittion message to contact Alice to complete
+   the transfer. This may require multiple round trips between
+   Alice and Bob. In addition, Alice or Bob may need to contact
+   some external server, but this is out of scope for this
+   protocol.
+
+The preexisting channel may not be suitable for completing the
+transfer, for instance because it has insufficient bandwidth.  or
+because it requires manual intervention by the users. In addition,
+the participants may not be online simultaneously, so a
+"store-and-forward" channel is required. {{?I-D.ietf-tigress-requirements}}
+describes the requirements in more detail. This document specifies
+how to build such a channel using a standard HTTP {{!RFC9110}} server.
 
 
 # Conventions and Definitions
 
 {::boilerplate bcp14-tagged}
 
+
+# Overview of Operation
 
 # Security Considerations
 
