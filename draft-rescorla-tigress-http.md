@@ -9,19 +9,19 @@ number:
 date:
 consensus: true
 v: 3
-area: AREA
-workgroup: WG Working Group
+area: "Applications and Real-Time"
+workgroup: "Transfer dIGital cREdentialS Securely"
 keyword:
  - next generation
  - unicorn
  - sparkling distributed ledger
 venue:
-  group: WG
-  type: Working Group
-  mail: WG@example.com
-  arch: https://example.com/WG
-  github: USER/REPO
-  latest: https://example.com/LATEST
+  group: "Transfer dIGital cREdentialS Securely"
+  type: "Working Group"
+  mail: "tigress@ietf.org"
+  arch: "https://mailarchive.ietf.org/arch/browse/tigress/"
+  github: "ekr/draft-rescorla-tigress-http"
+  latest: "https://ekr.github.io/draft-rescorla-tigress-http/draft-rescorla-tigress-http.html"
 
 author:
  -
