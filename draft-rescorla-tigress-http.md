@@ -128,6 +128,33 @@ L1 (again, based on R). Alice retrieves it and then deletes it. Any
 further message exchanges proceed in the same fashion.
 
 
+# Architectural Model
+
+The overall system has the following architecture:
+
+~~~ aasvg
++-----------------------------------------------+
+|   Credential Exchange Protocol (proprietary)  |
++-----------------------------------------------+
+|    Protected Message Format (Section TODO)    |
++-----------------------------------------------+
+|           HTTP Binding (Section TODO)         |
++-----------------------------------------------+
+~~~
+
+The lowest level of operation is a binding to HTTP specifying
+how to use an HTTP server as a store-and-forward channel,
+specified in {{http-binding}}. That channel is then used to carry
+encrypted messages in the format defined in {{message-format}}.
+Those messages contain an opaque payload that is used by
+the relevant proprietary credential exchange protocol.
+
+
+# HTTP Binding
+
+# Message Format
+
+
 
 
 # Security Considerations
