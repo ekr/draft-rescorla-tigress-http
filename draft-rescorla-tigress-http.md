@@ -24,6 +24,10 @@ author:
     fullname: Eric Rescorla
     organization: Windy Hill Systems, LLC
     email: "ekr@rtfm.com"
+ -
+    fullname: Brad Lassey
+    organization: Google
+    email: "lassey@google.com"
 
 normative:
 
