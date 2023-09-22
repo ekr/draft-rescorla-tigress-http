@@ -188,6 +188,10 @@ in a predefined secret location. B then does a GET to retrieve the
 resource and a DELETE to remove it. Receivers MUST delete
 messages immediately after they have retrieved them.
 
+[[OPEN ISSUE: Polling is bad, so we're going to need some kind
+of notification mechanism, but this document doesn't specify
+that.]]
+
 HTTP requests MUST not contain information from other context (e.g.,
 browser cookies). [[OPEN ISSUE: Can it contain other authentication
 information, for instance for attestation.]]
