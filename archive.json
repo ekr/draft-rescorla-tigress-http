@@ -1,0 +1,122 @@
+{
+  "magic": "E!vIA5L86J2I",
+  "timestamp": "2023-11-09T00:18:19.178600+00:00",
+  "repo": "ekr/draft-rescorla-tigress-http",
+  "labels": [
+    {
+      "name": "bug",
+      "description": "Something isn't working",
+      "color": "d73a4a"
+    },
+    {
+      "name": "documentation",
+      "description": "Improvements or additions to documentation",
+      "color": "0075ca"
+    },
+    {
+      "name": "duplicate",
+      "description": "This issue or pull request already exists",
+      "color": "cfd3d7"
+    },
+    {
+      "name": "enhancement",
+      "description": "New feature or request",
+      "color": "a2eeef"
+    },
+    {
+      "name": "good first issue",
+      "description": "Good for newcomers",
+      "color": "7057ff"
+    },
+    {
+      "name": "help wanted",
+      "description": "Extra attention is needed",
+      "color": "008672"
+    },
+    {
+      "name": "invalid",
+      "description": "This doesn't seem right",
+      "color": "e4e669"
+    },
+    {
+      "name": "question",
+      "description": "Further information is requested",
+      "color": "d876e3"
+    },
+    {
+      "name": "wontfix",
+      "description": "This will not be worked on",
+      "color": "ffffff"
+    }
+  ],
+  "issues": [
+    {
+      "number": 1,
+      "id": "I_kwDOKHXD_85uYNzw",
+      "title": "Add a versioning mechanism",
+      "url": "https://github.com/ekr/draft-rescorla-tigress-http/issues/1",
+      "state": "OPEN",
+      "author": "bslassey",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "In order to allow for the iteration of this protocol over time, we should probably have some versioning mechanism. Off the top of my head I can see two ways to do that. One would be to include it in the invitation URI. So, we could change the initiating message section to read:\r\n\r\n```\r\n# Initiating Message\r\n\r\nThe initiating message needs to contain at least the following four\r\nvalues:\r\n\r\n* A URI template. This template MUST be for an HTTPS URI.\r\n  and it MUST contain a two variables:\r\n    * One named \"tigress_location\". [[TODO: Need to flesh this out some more.]]\r\n    * One named \"version\"\r\n  \r\n* A secret value R generated with a cryptographically secure\r\n  PRNG {{!RFC4086}} and containing at least 256 bits of\r\n  entropy.\r\n  \r\n* A version number V, which indicates the version of this\r\n  protocol that the sender is expecting to use.\r\n\r\n* The AEAD algorithm defined using TLS 1.3 cipher suites\r\n  {{Section 8.4 of !RFC8446}}.\r\n  ```\r\n  \r\nAlternatively, we could stuff it in a header. The sender can supply the version in a header `TIGRESS_VERSION` on the initial PUT. If the server doesn't support that version for whatever reason it can reject the request. Similarly, when the receiver makes the first GET request, the server can include the `TIGRESS_VERSION` in the response.\r\n\r\nThere are probably other options. Thoughts?",
+      "createdAt": "2023-08-15T17:31:05Z",
+      "updatedAt": "2023-08-20T20:52:52Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "ekr",
+          "authorAssociation": "OWNER",
+          "body": "A few points.\r\n\r\n1. You're of course right that we need versioning. Doh.\r\n2. I think the right way to do it is for the sender to put it in the initiating message, as you suggest above.\r\n3. Do we need to provide the sender the ability to offer *multiple* versions, however? And in that case can R be shared? This is starting to smell a bit like HPKEConfig.\r\n\r\nSeparately @dennisjackson suggested actually using HPKE here, but unfortunately, that makes the first message weird because the Sender speaks first and obviously doesn't have the recipient's HPKE Config. The Recipient could speak first, but then we've added a full RT in many cases.",
+          "createdAt": "2023-08-16T00:16:43Z",
+          "updatedAt": "2023-08-16T00:16:43Z"
+        },
+        {
+          "author": "bslassey",
+          "authorAssociation": "COLLABORATOR",
+          "body": "I suspect that having the sender offer multiple versions might be overkill. How does this sound for a scheme? \r\n\r\n1. Sender sends the version they want to use in the initial message. \r\n2. If the Receiver can't handle that version, it  sends a PUT to the server with the path R.1 and a body containing and enumeration of the versions it can handle. (this would need to be an invariant across versions)\r\n3. The Sender then chooses from that set of versions and sends a new initial message with a new R.",
+          "createdAt": "2023-08-16T15:24:43Z",
+          "updatedAt": "2023-08-16T15:24:43Z"
+        },
+        {
+          "author": "ekr",
+          "authorAssociation": "OWNER",
+          "body": "Yeah, this is how QUIC incompatible VN works, but I've honestly never been a big fan. \r\n\r\nWith that said, I suggest that we just put a pin in this question. Clearly it's soluble in several ways and doesn't preclude having a -00.\r\n\r\n",
+          "createdAt": "2023-08-20T20:52:52Z",
+          "updatedAt": "2023-08-20T20:52:52Z"
+        }
+      ]
+    }
+  ],
+  "pulls": [
+    {
+      "number": 2,
+      "id": "PR_kwDOKHXD_85azhc7",
+      "title": "Adding myself as an author",
+      "url": "https://github.com/ekr/draft-rescorla-tigress-http/pull/2",
+      "state": "MERGED",
+      "author": "bslassey",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-09-20T16:47:44Z",
+      "updatedAt": "2023-09-20T16:54:06Z",
+      "baseRepository": "ekr/draft-rescorla-tigress-http",
+      "baseRefName": "main",
+      "baseRefOid": "722f67ef646554bcb1528db0bb9d50d8ba14cb6c",
+      "headRepository": "ekr/draft-rescorla-tigress-http",
+      "headRefName": "bslassey-author",
+      "headRefOid": "a3355be8c8e6a0e1f657a0003b5b1c9aec926ad6",
+      "closedAt": "2023-09-20T16:54:05Z",
+      "mergedAt": "2023-09-20T16:54:05Z",
+      "mergedBy": "ekr",
+      "mergeCommit": {
+        "oid": "1c5d8b79f8fe4db3198ce4b9a24fb5b28af6596b"
+      },
+      "comments": [],
+      "reviews": []
+    }
+  ]
+}
