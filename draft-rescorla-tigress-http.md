@@ -286,6 +286,11 @@ The protocol is intended to guarantee the following properties:
 2. In order to decrypt a message, an entity must know both R
    and the plaintext of every previous message.
 
+The in integrity of R depends on the security of the delivery channel.
+Ideally the channel should be end-to-end encrypted and should provide
+some mechanism to ensure the identity of the receiver to the sender.
+Several common messaging platforms, such as WhatsApp, iMessage and RCS
+provide these properties and thus could be considered a secure channel.
 If R is delivered over a secure channel, then an attacker should not
 be able to read any message or inject a new one. Because the HTTP
 server sees messages when they are stored it can delete them or
@@ -296,11 +301,14 @@ An attacker other than the server does not know the location of the
 resource and therefore cannot even store bogus values. If the
 
 An attacker who learns R prior to the protocol exchange can simply
-impersonate the receiver. This is why R should be sent over
-a secure channel. If it is necessary to send R over an insecure
-channel then some other mechanism is required to prevent this
-attack. [[OPEN ISSUE: this is not great, but it seems to be the
-assumed setting based on list discussion.]]
+impersonate the receiver. For this reason if the sender or the sender
+uses a messaging channel that less than secure as defined above, they
+should take the risks of doing so into consideration such as the
+likelihood of compromise, their degree of certainty as to the identity
+of the receiver and the value of the credential being shared. It may
+also be possible to mitigate some of these concerns with other mechanisms
+that are out of scope for this document such as sharing a PIN-protected
+version of the creential with a PIN that is delivered out of band.
 
 An attacker who learns R after the receiver has retrieved and
 and deleted the first message will not have the random value
