@@ -21,23 +21,23 @@ cannot speak directly to each other and may not even be online at the
 same time. This draft defines a mechanism for providing an appropriate
 asynchronous channel using HTTP as a dropbox. 
     ' name="description">
-<meta content="xml2rfc 3.18.0" name="generator">
+<meta content="xml2rfc 3.18.2" name="generator">
 <meta content="draft-rescorla-tigress-http-latest" name="ietf.draft">
 <!-- Generator version information:
-  xml2rfc 3.18.0
-    Python 3.11.5
+  xml2rfc 3.18.2
+    Python 3.11.6
     ConfigArgParse 1.5.3
     google-i18n-address 3.1.0
     intervaltree 3.1.0
     Jinja2 3.1.2
     lxml 4.9.3
-    platformdirs 3.10.0
+    platformdirs 4.1.0
     pycountry 22.3.5
     PyYAML 6.0
     requests 2.31.0
     setuptools 67.7.2
     six 1.16.0
-    wcwidth 0.2.6
+    wcwidth 0.2.12
 -->
 <link href="draft-rescorla-tigress-http.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
@@ -1036,11 +1036,11 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">TDCH</td>
-<td class="right">September 2023</td>
+<td class="right">December 2023</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Rescorla &amp; Lassey</td>
-<td class="center">Expires 25 March 2024</td>
+<td class="center">Expires 13 June 2024</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -1053,12 +1053,12 @@ svg :is([fill="white"], [fill^="#fff"]) {
 <dd class="internet-draft">draft-rescorla-tigress-http-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2023-09-22" class="published">22 September 2023</time>
+<time datetime="2023-12-11" class="published">11 December 2023</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Informational</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2024-03-25">25 March 2024</time></dd>
+<dd class="expires"><time datetime="2024-06-13">13 June 2024</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -1123,7 +1123,7 @@ asynchronous channel using HTTP as a dropbox.<a href="#section-abstract-1" class
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 25 March 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 13 June 2024.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -1218,19 +1218,22 @@ with a family member.<a href="#section-1-2" class="pilcrow">¶</a></p>
 <p id="section-1-3">Although the credentials and transfer mechanisms are often proprietary
 they share a common workflow in which:<a href="#section-1-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-1-4">
-<li id="section-1-4.1">The Sender initiates the transfer from their app and sends
+<li id="section-1-4.1">
+          <p id="section-1-4.1.1">The Sender initiates the transfer from their app and sends
 an invitation message over a preexisting channel such as
-SMS or e-mail.<a href="#section-1-4.1" class="pilcrow">¶</a>
+SMS or e-mail.<a href="#section-1-4.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-1-4.2">Bob receives the invitation message from Alice and hands
+        <li id="section-1-4.2">
+          <p id="section-1-4.2.1">Bob receives the invitation message from Alice and hands
 it to his app (ideally this would happen automatically,
-e.g., by some URL handler).<a href="#section-1-4.2" class="pilcrow">¶</a>
+e.g., by some URL handler).<a href="#section-1-4.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-1-4.3">Bob uses the invitation message to contact Alice to complete
+        <li id="section-1-4.3">
+          <p id="section-1-4.3.1">Bob uses the invitation message to contact Alice to complete
 the transfer. This may require multiple round trips between
 Alice and Bob. In addition, Alice or Bob may need to contact
 some external server, but this is out of scope for this
-protocol.<a href="#section-1-4.3" class="pilcrow">¶</a>
+protocol.<a href="#section-1-4.3.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
 <p id="section-1-5">The preexisting channel may not be suitable for completing the
@@ -1314,12 +1317,14 @@ appear in all capitals, as shown here.<a href="#section-2-1" class="pilcrow">¶<
 <p id="section-3-3">In order to initiate the transfer, Alice generates a random secret
 value R. She then does the following:<a href="#section-3-3" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-3-4">
-<li id="section-3-4.1">Sends R and the address of the HTTP server to Bob over the
-preexisting channel.<a href="#section-3-4.1" class="pilcrow">¶</a>
+<li id="section-3-4.1">
+          <p id="section-3-4.1.1">Sends R and the address of the HTTP server to Bob over the
+preexisting channel.<a href="#section-3-4.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-3-4.2">Generates the first protocol message MSG0 and stores it in
+        <li id="section-3-4.2">
+          <p id="section-3-4.2.1">Generates the first protocol message MSG0 and stores it in
 a location on the HTTP server (L0) pseudorandomly generated from
-R.<a href="#section-3-4.2" class="pilcrow">¶</a>
+R.<a href="#section-3-4.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
 <p id="section-3-5">When Bob receives the initiating message, he uses R to determine L0,
@@ -1378,16 +1383,19 @@ the relevant proprietary credential exchange protocol.<a href="#section-4-3" cla
 <p id="section-5-1">The initiating message needs to contain at least the following three
 values:<a href="#section-5-1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-5-2.1">A URI template. This <span class="bcp14">MUST</span> contain a single variable, named
+<li class="normal" id="section-5-2.1">
+          <p id="section-5-2.1.1">A URI template. This <span class="bcp14">MUST</span> contain a single variable, named
 "tigress_location". [[TODO: Need to flesh this out some more.]]
-This template <span class="bcp14">MUST</span> be for an HTTPS URI.<a href="#section-5-2.1" class="pilcrow">¶</a>
+This template <span class="bcp14">MUST</span> be for an HTTPS URI.<a href="#section-5-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-5-2.2">A secret value R generated with a cryptographically secure
+        <li class="normal" id="section-5-2.2">
+          <p id="section-5-2.2.1">A secret value R generated with a cryptographically secure
 PRNG <span>[<a href="#RFC4086" class="cite xref">RFC4086</a>]</span> and containing at least 256 bits of
-entropy.<a href="#section-5-2.2" class="pilcrow">¶</a>
+entropy.<a href="#section-5-2.2.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-5-2.3">The AEAD algorithm defined using TLS 1.3 cipher suites
-<span><a href="https://rfc-editor.org/rfc/rfc8446#section-8.4" class="relref">Section 8.4</a> of [<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-5-2.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-5-2.3">
+          <p id="section-5-2.3.1">The AEAD algorithm defined using TLS 1.3 cipher suites
+<span><a href="https://rfc-editor.org/rfc/rfc8446#section-8.4" class="relref">Section 8.4</a> of [<a href="#RFC8446" class="cite xref">RFC8446</a>]</span>.<a href="#section-5-2.3.1" class="pilcrow">¶</a></p>
 </li>
       </ul>
 <p id="section-5-3">In practice, it will probably contain other information such
@@ -1429,7 +1437,7 @@ Maybe we should instead do a combiner?]]<a href="#section-6-6" class="pilcrow">�
 <p id="section-6-7">Where "Transcript" is the concatenation of the plaintext of all
 previous messages and HKDF-Expand-Label uses the hash from the
 defined cipher suite.<a href="#section-6-7" class="pilcrow">¶</a></p>
-<p id="section-6-8">The URL is then generated by subsituting the URL-safe base64 encoding
+<p id="section-6-8">The URL is then generated by substituting the URL-safe base64 encoding
 <span>[<a href="#RFC4648" class="cite xref">RFC4648</a>]</span> for the "tigress_location" variable in the URL template.<a href="#section-6-8" class="pilcrow">¶</a></p>
 <p id="section-6-9">[[OPEN ISSUE: What is the media type of the message?]]<a href="#section-6-9" class="pilcrow">¶</a></p>
 <p id="section-6-10">HTTP servers used for this protocol <span class="bcp14">MUST NOT</span> allow enumeration of
@@ -1503,15 +1511,22 @@ and abort the protocol run if they are incorrect.<a href="#section-7-9" class="p
       </h2>
 <p id="section-8-1">The protocol is intended to guarantee the following properties:<a href="#section-8-1" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-8-2">
-<li id="section-8-2.1">In order to determine the location of a message, an entity
+<li id="section-8-2.1">
+          <p id="section-8-2.1.1">In order to determine the location of a message, an entity
 must know both R and the plaintext of every previous
-message.<a href="#section-8-2.1" class="pilcrow">¶</a>
+message.<a href="#section-8-2.1.1" class="pilcrow">¶</a></p>
 </li>
-        <li id="section-8-2.2">In order to decrypt a message, an entity must know both R
-and the plaintext of every previous message.<a href="#section-8-2.2" class="pilcrow">¶</a>
+        <li id="section-8-2.2">
+          <p id="section-8-2.2.1">In order to decrypt a message, an entity must know both R
+and the plaintext of every previous message.<a href="#section-8-2.2.1" class="pilcrow">¶</a></p>
 </li>
       </ol>
-<p id="section-8-3">If R is delivered over a secure channel, then an attacker should not
+<p id="section-8-3">The in integrity of R depends on the security of the delivery channel.
+Ideally the channel should be end-to-end encrypted and should provide
+some mechanism to ensure the identity of the receiver to the sender.
+Several common messaging platforms, such as WhatsApp, iMessage and RCS
+provide these properties and thus could be considered a secure channel.
+If R is delivered over a secure channel, then an attacker should not
 be able to read any message or inject a new one. Because the HTTP
 server sees messages when they are stored it can delete them or
 replace them with an invalid message, but because it does not have R
@@ -1520,11 +1535,14 @@ result of this attack is to cause the credential exchange to fail.
 An attacker other than the server does not know the location of the
 resource and therefore cannot even store bogus values. If the<a href="#section-8-3" class="pilcrow">¶</a></p>
 <p id="section-8-4">An attacker who learns R prior to the protocol exchange can simply
-impersonate the receiver. This is why R should be sent over
-a secure channel. If it is necessary to send R over an insecure
-channel then some other mechanism is required to prevent this
-attack. [[OPEN ISSUE: this is not great, but it seems to be the
-assumed setting based on list discussion.]]<a href="#section-8-4" class="pilcrow">¶</a></p>
+impersonate the receiver. For this reason if the sender or the sender
+uses a messaging channel that less than secure as defined above, they
+should take the risks of doing so into consideration such as the
+likelihood of compromise, their degree of certainty as to the identity
+of the receiver and the value of the credential being shared. It may
+also be possible to mitigate some of these concerns with other mechanisms
+that are out of scope for this document such as sharing a PIN-protected
+version of the creential with a PIN that is delivered out of band.<a href="#section-8-4" class="pilcrow">¶</a></p>
 <p id="section-8-5">An attacker who learns R after the receiver has retrieved and
 and deleted the first message will not have the random value
 from MSG0 and therefore will not be able to determine either
@@ -1561,6 +1579,7 @@ and deletes the message.<a href="#section-8-6" class="pilcrow">¶</a></p>
       <h2 id="name-references">
 <a href="#section-10" class="section-number selfRef">10. </a><a href="#name-references" class="section-name selfRef">References</a>
       </h2>
+<div id="sec-normative-references">
 <section id="section-10.1">
         <h3 id="name-normative-references">
 <a href="#section-10.1" class="section-number selfRef">10.1. </a><a href="#name-normative-references" class="section-name selfRef">Normative References</a>
@@ -1596,6 +1615,8 @@ and deletes the message.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 </dl>
 </section>
+</div>
+<div id="sec-informative-references">
 <section id="section-10.2">
         <h3 id="name-informative-references">
 <a href="#section-10.2" class="section-number selfRef">10.2. </a><a href="#name-informative-references" class="section-name selfRef">Informative References</a>
@@ -1607,6 +1628,7 @@ and deletes the message.<a href="#section-8-6" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 </dl>
 </section>
+</div>
 </section>
 <div id="acknowledgments">
 <section id="appendix-A">
