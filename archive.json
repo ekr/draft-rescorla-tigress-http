@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2023-12-10T00:21:12.532035+00:00",
+  "timestamp": "2023-12-12T00:19:31.517761+00:00",
   "repo": "ekr/draft-rescorla-tigress-http",
   "labels": [
     {
@@ -115,6 +115,32 @@
       "mergeCommit": {
         "oid": "1c5d8b79f8fe4db3198ce4b9a24fb5b28af6596b"
       },
+      "comments": [],
+      "reviews": []
+    },
+    {
+      "number": 3,
+      "id": "PR_kwDOKHXD_85hsfiv",
+      "title": "Update security considerations to cover \"secure enough\" channels",
+      "url": "https://github.com/ekr/draft-rescorla-tigress-http/pull/3",
+      "state": "OPEN",
+      "author": "bslassey",
+      "authorAssociation": "COLLABORATOR",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2023-12-11T15:20:16Z",
+      "updatedAt": "2023-12-11T15:20:16Z",
+      "baseRepository": "ekr/draft-rescorla-tigress-http",
+      "baseRefName": "main",
+      "baseRefOid": "97bccd42c353b444a6c853a2d255b09d333c06a0",
+      "headRepository": "ekr/draft-rescorla-tigress-http",
+      "headRefName": "bslassey-secure-enough",
+      "headRefOid": "881ba44e2dcff840a4cc96a11915f8c3dcb970a7",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
       "comments": [],
       "reviews": []
     }
